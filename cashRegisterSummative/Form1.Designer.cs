@@ -259,7 +259,6 @@
             this.receiptOutput.Name = "receiptOutput";
             this.receiptOutput.Size = new System.Drawing.Size(369, 497);
             this.receiptOutput.TabIndex = 21;
-            this.receiptOutput.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // receiptOutputCover
             // 

@@ -33,10 +33,12 @@ namespace cashRegisterSummative
         double tendered;
 
         int receiptNumber;
-        int x = 1; //variable for detecting if there is still money owed
+        bool enoughPaid = true; //variable for detecting if there is still money owed
         int y = 60; // variable for simulating the print
-        int z = 1; // variable for detecting if money is tendered
+        bool moneyOffered = false; // variable for detecting if money is tendered
+        int waitTime = 1000;
         Random randGen = new Random();
+        SoundPlayer receiptSound = new SoundPlayer(Properties.Resources.printSound);
 
         public GroceryStore()
         {
@@ -118,14 +120,13 @@ namespace cashRegisterSummative
                 taxOutput.Text = taxAmount.ToString("C");
                 totalCostOutput.Text = totalCost.ToString("C");
 
-                z = 1;
             }
             catch
             {
                 subtotalOutput.Text = "ERROR";
                 taxOutput.Text = "ERROR";
                 totalCostOutput.Text = "ERROR";
-                z = 0;
+                moneyOffered = false;
             }
         }
 
@@ -144,21 +145,21 @@ namespace cashRegisterSummative
                 {
                     changeOutput.Text = change.ToString("C");
                     changeLabel.Text = "Your change is";
-                    x = 1;
-                    z = 1;
+                    enoughPaid = true;
+                    moneyOffered = true;
                 }
                 else
                 {
                     change = change * -1;
                     changeOutput.Text = change.ToString("C");
                     changeLabel.Text = "You still owe";
-                    x = 0;
-                    z = 1;
+                    enoughPaid = false;
+                    moneyOffered = true;
                 }
             } catch
             {
                 changeOutput.Text = "ERROR";
-                z = 0;
+                moneyOffered = false;
             }
 
         }
@@ -166,96 +167,99 @@ namespace cashRegisterSummative
         private void receiptButton_Click(object sender, EventArgs e)
         {
             y = 60;
-            if (z == 1)
+            if (moneyOffered == true    )
             {
-                if (x == 1)
+                if (enoughPaid == true)
                 {
-                    //Store Name
-                    receiptOutput.Text = "Worlds First Grocery and Brick Store";
+                   //allows for reset
+                    receiptOutputCover.Location = new System.Drawing.Point(160, 35);
+                    Refresh();
+                    y = 60;
 
+                    //Store Name
+                    receiptOutput.Text = "                   Worlds First Grocery and Brick Store";
+                    receiptSound.Play();
                     receiptOutputCover.Location = new System.Drawing.Point(160, y);
-                    Thread.Sleep(500);
+                    Thread.Sleep(waitTime);
                     Refresh();
 
-                    receiptOutput.Text += $"\n\n Recipet Number {receiptNumber}";
-
+                    receiptOutput.Text += $"\n\n                              Receipt Number {receiptNumber}";
+                    receiptSound.Play();
                     receiptOutputCover.Location = new System.Drawing.Point(160, y = y + 20);
-                    Thread.Sleep(500);
+                    Thread.Sleep(waitTime);
                     Refresh();
 
                     receiptOutput.Text += $"\n\n";
-
+                    receiptSound.Play();
                     receiptOutputCover.Location = new System.Drawing.Point(160, y = y + 30);
-                    Thread.Sleep(500);
+                    Thread.Sleep(waitTime);
                     Refresh();
 
                     //List of purchases
                     if (potatoCount > 0)
                     {
 
-                        receiptOutput.Text += $"\n {potatoCount} Potato(es) @ {potatoCost.ToString("C")}";
-
+                        receiptOutput.Text += $"\n Potato(es)                        {potatoCount}                                   {potatoCost.ToString("C")}";
+                        receiptSound.Play();
                         receiptOutputCover.Location = new System.Drawing.Point(160, y = y + 12);
-                        Thread.Sleep(500);
+                        Thread.Sleep(waitTime);
                         Refresh();
                     }
 
                     if (tomatoCount > 0)
                     {
-                        receiptOutput.Text += $"\n {tomatoCount} Tomato(es) @ {tomatoCost.ToString("C")}";
-
+                        receiptOutput.Text += $"\n Tomato(es)                       {tomatoCount}                                  {tomatoCost.ToString("C")}";
+                        receiptSound.Play();
                         receiptOutputCover.Location = new System.Drawing.Point(160, y = y + 12);
-                        Thread.Sleep(500);
+                        Thread.Sleep(waitTime);
                         Refresh();
                     }
 
                     if (brickCount > 0)
                     {
-                        receiptOutput.Text += $"\n {brickCount} Brick(s) @ {brickCost.ToString("C")}";
-
+                        receiptOutput.Text += $"\n Brick(s)                            {brickCount}                                   {brickCost.ToString("C")}";
+                        receiptSound.Play();
                         receiptOutputCover.Location = new System.Drawing.Point(160, y = y + 12);
-                        Thread.Sleep(500);
+                        Thread.Sleep(waitTime);
                         Refresh();
                     }
                     receiptOutput.Text += $"\n";
                     receiptOutputCover.Location = new System.Drawing.Point(160, y = y + 20);
-                    Thread.Sleep(500);
+                    Thread.Sleep(waitTime);
                     Refresh();
 
                     //Cost
-                    receiptOutput.Text += $"\n Subtotal: {subtotal.ToString("C")}";
-
+                    receiptOutput.Text += $"\n Subtotal:                                                               {subtotal.ToString("C")}";
+                    receiptSound.Play();
                     receiptOutputCover.Location = new System.Drawing.Point(160, y = y + 12);
-                    Thread.Sleep(500);
+                    Thread.Sleep(waitTime);
                     Refresh();
 
-                    receiptOutput.Text += $"\n Tax: {taxAmount.ToString("C")}";
-
+                    receiptOutput.Text += $"\n Tax:                                                                     {taxAmount.ToString("C")}";
+                    receiptSound.Play();
                     receiptOutputCover.Location = new System.Drawing.Point(160, y = y + 12);
-                    Thread.Sleep(500);
+                    Thread.Sleep(waitTime);
                     Refresh();
 
-                    receiptOutput.Text += $"\n Total: {totalCost.ToString("C")}";
-
+                    receiptOutput.Text += $"\n Total:                                                                   {totalCost.ToString("C")}";
+                    receiptSound.Play();
                     receiptOutputCover.Location = new System.Drawing.Point(160, y = y + 12);
-                    Thread.Sleep(500);
+                    Thread.Sleep(waitTime);
                     Refresh();
 
                     receiptOutput.Text += $"\n";
 
                     //Tendered and change
-                    receiptOutput.Text += $"\n Tendered: {tendered.ToString("C")}";
-
-
+                    receiptOutput.Text += $"\n Tendered:                                                         {tendered.ToString("C")}";
+                    receiptSound.Play();
                     receiptOutputCover.Location = new System.Drawing.Point(160, y = y + 15);
-                    Thread.Sleep(500);
+                    Thread.Sleep(waitTime);
                     Refresh();
 
-                    receiptOutput.Text += $"\n Change due: {change.ToString("C")}";
-
-
+                    receiptOutput.Text += $"\n Change due:                                                       {change.ToString("C")}";
+                    receiptSound.Play();
                     receiptOutputCover.Location = new System.Drawing.Point(160, y = y + 15);
-                    Thread.Sleep(500);
+                    Thread.Sleep(waitTime);
                     Refresh();
 
                     receiptOutput.Text += $"\n\n\n";
@@ -263,54 +267,72 @@ namespace cashRegisterSummative
                     for (int z = 1; z < 4; z++)
                     {
                         receiptOutputCover.Location = new System.Drawing.Point(160, y = y + 15);
-                        Thread.Sleep(500);
+                        receiptSound.Play();
+                        Thread.Sleep(waitTime);
                         Refresh();
                     }
 
                     //Final comments
                     receiptOutput.Text += $"\n\n Have a mediocre day!";
-
+                    receiptSound.Play();
                     receiptOutputCover.Location = new System.Drawing.Point(160, y = y + 25);
-                    Thread.Sleep(500);
+                    Thread.Sleep(waitTime);
                     Refresh();
 
                     receiptOutput.Text += $"\n\n 308 Negra Arroyo Lane, Albequerque, New Mexico, 87104";
-
+                    receiptSound.Play();
                     receiptOutputCover.Location = new System.Drawing.Point(160, y = y + 45);
-                    Thread.Sleep(500);
+                    Thread.Sleep(waitTime);
                     Refresh();
                 }
 
-                else if (x == 0)
+                else if (enoughPaid == false)
                 {
+                    receiptOutputCover.Location = new System.Drawing.Point(160,35);
+                    Refresh();
                     y = 60;
                     receiptOutput.Text = $"\n You still owe me idiot";
                     receiptOutput.Text += $"\n\n Have a mediocre day!";
                     receiptOutput.Text += $"\n\n 308 Negra Arroyo Lane, Albequerque, New Mexico, 87104";
+
                     receiptOutputCover.Location = new System.Drawing.Point(160, 70);
-                    Thread.Sleep(500);
+                    receiptSound.Play();
+                    Thread.Sleep(waitTime);
                     Refresh();
+
                     receiptOutputCover.Location = new System.Drawing.Point(160, 95);
-                    Thread.Sleep(500);
+                    receiptSound.Play();
+                    Thread.Sleep(waitTime);
                     Refresh();
+
                     receiptOutputCover.Location = new System.Drawing.Point(160, 135);
-                    Thread.Sleep(500);
+                    receiptSound.Play();
+                    Thread.Sleep(waitTime);
                     Refresh();
                 }
-            } else if (z == 0)
+            } else if (moneyOffered == false)
             {
+                receiptOutputCover.Location = new System.Drawing.Point(160, 40);
                 receiptOutput.Text = $"\n Whoops, something went wrong :/";
                 receiptOutput.Text += $"\n\n Have a mediocre day!";
                 receiptOutput.Text += $"\n\n 308 Negra Arroyo Lane, Albequerque, New Mexico, 87104";
+               
                 receiptOutputCover.Location = new System.Drawing.Point(160, 70);
-                Thread.Sleep(500);
+                receiptSound.Play();
+                Thread.Sleep(waitTime);
                 Refresh();
+               
                 receiptOutputCover.Location = new System.Drawing.Point(160, 95);
-                Thread.Sleep(500);
+                receiptSound.Play();
+                Thread.Sleep(waitTime);
                 Refresh();
+
                 receiptOutputCover.Location = new System.Drawing.Point(160, 135);
-                Thread.Sleep(500);
+                receiptSound.Play();
+                Thread.Sleep(waitTime);
                 Refresh();
+
+                receiptSound.Play();
             }
         }
 

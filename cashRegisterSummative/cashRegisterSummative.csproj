@@ -83,5 +83,8 @@
   <ItemGroup>
     <None Include="Resources\cash-register-77868.mp3" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\25421__andrewweathers__receipt.wav" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
