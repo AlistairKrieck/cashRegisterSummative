@@ -72,6 +72,7 @@
             this.brickLabel.Size = new System.Drawing.Size(47, 16);
             this.brickLabel.TabIndex = 1;
             this.brickLabel.Text = "Bricks:";
+            this.brickLabel.Click += new System.EventHandler(this.brickLabel_Click);
             // 
             // tomatoLabel
             // 
@@ -91,6 +92,7 @@
             this.potatoLabel.Size = new System.Drawing.Size(64, 16);
             this.potatoLabel.TabIndex = 3;
             this.potatoLabel.Text = "Potatoes:";
+            this.potatoLabel.Click += new System.EventHandler(this.potatoLabel_Click);
             // 
             // potatoInput
             // 
@@ -106,6 +108,7 @@
             this.tomatoInput.Name = "tomatoInput";
             this.tomatoInput.Size = new System.Drawing.Size(100, 22);
             this.tomatoInput.TabIndex = 5;
+            this.tomatoInput.TextChanged += new System.EventHandler(this.tomatoInput_TextChanged);
             // 
             // brickInput
             // 
@@ -113,6 +116,7 @@
             this.brickInput.Name = "brickInput";
             this.brickInput.Size = new System.Drawing.Size(100, 22);
             this.brickInput.TabIndex = 6;
+            this.brickInput.TextChanged += new System.EventHandler(this.brickInput_TextChanged);
             // 
             // label4
             // 
@@ -131,6 +135,7 @@
             this.subtotalLabel.Size = new System.Drawing.Size(59, 16);
             this.subtotalLabel.TabIndex = 10;
             this.subtotalLabel.Text = "Subtotal:";
+            this.subtotalLabel.Click += new System.EventHandler(this.subtotalLabel_Click);
             // 
             // taxLabel
             // 
@@ -140,6 +145,7 @@
             this.taxLabel.Size = new System.Drawing.Size(33, 16);
             this.taxLabel.TabIndex = 9;
             this.taxLabel.Text = "Tax:";
+            this.taxLabel.Click += new System.EventHandler(this.taxLabel_Click);
             // 
             // totalCostLabel
             // 
@@ -193,6 +199,7 @@
             this.label5.TabIndex = 14;
             this.label5.Text = "Grocery and Brick Store";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // moneyInput
             // 
@@ -200,6 +207,7 @@
             this.moneyInput.Name = "moneyInput";
             this.moneyInput.Size = new System.Drawing.Size(100, 22);
             this.moneyInput.TabIndex = 16;
+            this.moneyInput.TextChanged += new System.EventHandler(this.moneyInput_TextChanged);
             // 
             // tenderedLabel
             // 
@@ -209,6 +217,7 @@
             this.tenderedLabel.Size = new System.Drawing.Size(67, 16);
             this.tenderedLabel.TabIndex = 15;
             this.tenderedLabel.Text = "Tendered";
+            this.tenderedLabel.Click += new System.EventHandler(this.tenderedLabel_Click);
             // 
             // changeOutput
             // 
@@ -255,10 +264,12 @@
             // receiptOutput
             // 
             this.receiptOutput.BackColor = System.Drawing.Color.White;
+            this.receiptOutput.Font = new System.Drawing.Font("Courier New", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.receiptOutput.Location = new System.Drawing.Point(231, 46);
             this.receiptOutput.Name = "receiptOutput";
             this.receiptOutput.Size = new System.Drawing.Size(369, 497);
             this.receiptOutput.TabIndex = 21;
+            this.receiptOutput.Click += new System.EventHandler(this.receiptOutput_Click);
             // 
             // receiptOutputCover
             // 
