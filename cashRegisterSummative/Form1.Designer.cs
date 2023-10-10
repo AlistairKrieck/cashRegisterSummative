@@ -287,7 +287,7 @@
             // 
             // receiptOutputCover
             // 
-            this.receiptOutputCover.BackColor = System.Drawing.Color.Black;
+            this.receiptOutputCover.BackColor = System.Drawing.Color.DimGray;
             this.receiptOutputCover.ForeColor = System.Drawing.SystemColors.Control;
             this.receiptOutputCover.Location = new System.Drawing.Point(231, 47);
             this.receiptOutputCover.Name = "receiptOutputCover";
@@ -311,7 +311,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Black;
+            this.BackColor = System.Drawing.Color.DimGray;
             this.ClientSize = new System.Drawing.Size(587, 507);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.receiptOutputCover);
@@ -336,6 +336,7 @@
             this.Controls.Add(this.tomatoLabel);
             this.Controls.Add(this.brickLabel);
             this.Controls.Add(this.calculateButton);
+            this.ForeColor = System.Drawing.SystemColors.ControlDark;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "GroceryStore";
             this.Tag = "";
